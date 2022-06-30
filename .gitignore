@@ -1,0 +1,11 @@
+.idea
+
+wallet/.idea/
+wallet/target/
+wallet/.mvn/
+wallet/HELP.md
+wallet/mvnw
+wallet/mvnw.cmd
+wallet/wallet.iml
+
+dynamoDB
