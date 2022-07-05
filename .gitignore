@@ -8,4 +8,12 @@ wallet/mvnw
 wallet/mvnw.cmd
 wallet/wallet.iml
 
+buying_of_securities/.idea/
+buying_of_securities/target/
+buying_of_securities/.mvn/
+buying_of_securities/HELP.md
+buying_of_securities/mvnw
+buying_of_securities/mvnw.cmd
+buying_of_securities/buying.of.securities.iml
+
 dynamoDB
