@@ -4,6 +4,11 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
+import com.amazonaws.services.dynamodbv2.util.TableUtils;
+import com.tullyo.buying.of.securities.infrastructure.adapters.entities.TitlePurchaseEntity;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +42,15 @@ public class DynamoDBConfig {
   @Bean
   public AWSCredentials amazonAWSCredentials() {
     return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
+  }
+
+  @Bean
+  public void createTableTitlePurchase() {
+    AmazonDynamoDB amazonDynamoDB = amazonDynamoDB();
+    DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
+    CreateTableRequest tableRequest = dynamoDBMapper.generateCreateTableRequest(TitlePurchaseEntity.class);
+    tableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+    TableUtils.createTableIfNotExists(amazonDynamoDB, tableRequest);
   }
 
 }
