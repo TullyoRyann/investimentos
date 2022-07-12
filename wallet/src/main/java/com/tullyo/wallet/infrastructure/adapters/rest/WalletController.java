@@ -1,4 +1,4 @@
-package com.tullyo.wallet.application.adapters.controllers;
+package com.tullyo.wallet.infrastructure.adapters.rest;
 
 import com.tullyo.wallet.domain.dtos.request.WalletRequest;
 import com.tullyo.wallet.domain.dtos.response.WalletResponse;
