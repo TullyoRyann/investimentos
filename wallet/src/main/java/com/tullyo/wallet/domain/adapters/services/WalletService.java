@@ -1,8 +1,8 @@
 package com.tullyo.wallet.domain.adapters.services;
 
 import com.tullyo.wallet.domain.model.Wallet;
-import com.tullyo.wallet.domain.ports.repositories.WalletRepositoryPort;
-import com.tullyo.wallet.domain.ports.services.WalletServicePort;
+import com.tullyo.wallet.domain.ports.out.repositories.WalletRepositoryPort;
+import com.tullyo.wallet.domain.ports.in.services.WalletServicePort;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

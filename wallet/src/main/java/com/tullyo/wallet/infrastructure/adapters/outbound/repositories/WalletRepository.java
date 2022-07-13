@@ -1,6 +1,6 @@
-package com.tullyo.wallet.infrastructure.adapters.repositories;
+package com.tullyo.wallet.infrastructure.adapters.outbound.repositories;
 
-import com.tullyo.wallet.infrastructure.adapters.entities.WalletEntity;
+import com.tullyo.wallet.infrastructure.adapters.inbound.entities.WalletEntity;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 

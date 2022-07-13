@@ -1,9 +1,9 @@
-package com.tullyo.wallet.infrastructure.adapters.repositories.impl;
+package com.tullyo.wallet.infrastructure.adapters.outbound.repositories.impl;
 
 import com.tullyo.wallet.domain.model.Wallet;
-import com.tullyo.wallet.domain.ports.repositories.WalletRepositoryPort;
-import com.tullyo.wallet.infrastructure.adapters.entities.WalletEntity;
-import com.tullyo.wallet.infrastructure.adapters.repositories.WalletRepository;
+import com.tullyo.wallet.domain.ports.out.repositories.WalletRepositoryPort;
+import com.tullyo.wallet.infrastructure.adapters.inbound.entities.WalletEntity;
+import com.tullyo.wallet.infrastructure.adapters.outbound.repositories.WalletRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

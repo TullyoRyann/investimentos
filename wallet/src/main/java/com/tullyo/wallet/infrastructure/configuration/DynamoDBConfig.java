@@ -8,7 +8,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.util.TableUtils;
-import com.tullyo.wallet.infrastructure.adapters.entities.WalletEntity;
+import com.tullyo.wallet.infrastructure.adapters.inbound.entities.WalletEntity;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
 @Configuration
-@EnableDynamoDBRepositories(basePackages = "com.tullyo.wallet.infrastructure.adapters.repositories")
+@EnableDynamoDBRepositories(basePackages = "com.tullyo.wallet.infrastructure.adapters.outbound.repositories")
 public class DynamoDBConfig {
 
   @Value("${amazon.dynamodb.endpoint}")

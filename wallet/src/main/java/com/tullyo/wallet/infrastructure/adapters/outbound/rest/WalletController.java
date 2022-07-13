@@ -1,9 +1,9 @@
-package com.tullyo.wallet.infrastructure.adapters.rest;
+package com.tullyo.wallet.infrastructure.adapters.outbound.rest;
 
-import com.tullyo.wallet.domain.dtos.request.WalletRequest;
-import com.tullyo.wallet.domain.dtos.response.WalletResponse;
+import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.request.WalletRequest;
+import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.response.WalletResponse;
 import com.tullyo.wallet.domain.model.Wallet;
-import com.tullyo.wallet.domain.ports.services.WalletServicePort;
+import com.tullyo.wallet.domain.ports.in.services.WalletServicePort;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;

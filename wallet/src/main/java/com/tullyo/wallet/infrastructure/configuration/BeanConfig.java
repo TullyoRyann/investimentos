@@ -1,8 +1,8 @@
 package com.tullyo.wallet.infrastructure.configuration;
 
 import com.tullyo.wallet.domain.adapters.services.WalletService;
-import com.tullyo.wallet.domain.ports.repositories.WalletRepositoryPort;
-import com.tullyo.wallet.domain.ports.services.WalletServicePort;
+import com.tullyo.wallet.domain.ports.out.repositories.WalletRepositoryPort;
+import com.tullyo.wallet.domain.ports.in.services.WalletServicePort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

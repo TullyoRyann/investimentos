@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Setter
 public class TitlePurchase {
 
-  private String id;
   private LocalDateTime monthOfPurchase;
   private BigDecimal amountPaid;
   private BigDecimal dividendValue;

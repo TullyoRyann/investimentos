@@ -1,4 +1,4 @@
-package com.tullyo.wallet.domain.ports.repositories;
+package com.tullyo.wallet.domain.ports.out.repositories;
 
 import com.tullyo.wallet.domain.model.Wallet;
 
