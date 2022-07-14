@@ -4,6 +4,7 @@ import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.request.WalletRequ
 import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.response.WalletResponse;
 import com.tullyo.wallet.domain.model.Wallet;
 import com.tullyo.wallet.domain.ports.in.services.WalletServicePort;
+import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -13,21 +14,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/wallets")
 @RequiredArgsConstructor
-public class WalletController {
+public class WalletController extends BasicController {
 
   private final WalletServicePort walletServicePort;
   private final ModelMapper modelMapper;
 
   @PostMapping
-  public ResponseEntity<WalletResponse> save(@RequestBody WalletRequest walletRequest) {
+  public ResponseEntity<WalletResponse> save(@RequestBody WalletRequest walletRequest, UriComponentsBuilder componentsBuilder) {
     Wallet wallet = modelMapper.map(walletRequest, Wallet.class);
     Wallet walletSaved = walletServicePort.save(wallet);
     WalletResponse walletResponse = modelMapper.map(walletSaved, WalletResponse.class);
-    return ResponseEntity.status(HttpStatus.CREATED).body(walletResponse);
+
+    return ResponseEntity
+        .created(componentsBuilder.path(getURI()).buildAndExpand(walletResponse.getId()).toUri())
+        .body(walletResponse);
   }
 
   @GetMapping("/{id}")
@@ -58,6 +63,11 @@ public class WalletController {
     }
 
     return  ResponseEntity.notFound().build();
+  }
+
+  @Override
+  protected String getURI() {
+    return "/wallets/{id}";
   }
 
 }
