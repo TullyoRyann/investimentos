@@ -1,11 +1,13 @@
 package com.tullyo.wallet.infrastructure.configuration;
 
+import com.amazonaws.SdkClientException;
 import com.tullyo.wallet.domain.model.HttpMessageCode;
 import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.response.ErrorResponse;
 import com.tullyo.wallet.infrastructure.services.DictionaryService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 @RequiredArgsConstructor
+@Slf4j
 public class ControllerExceptionHandler {
 
   private final DictionaryService dictionaryService;
@@ -41,6 +44,15 @@ public class ControllerExceptionHandler {
     return ResponseEntity
         .status(HttpStatus.PRECONDITION_FAILED)
         .body(errors);
+  }
+
+  @ExceptionHandler(SdkClientException.class)
+  public ResponseEntity<ErrorResponse> handleDatabaseConnectionRefused(SdkClientException ex) {
+    log.error("[Controller Exception Handler]: {}", ex.getMessage());
+
+    return ResponseEntity
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .body(dictionaryService.getMessage(HttpMessageCode.CONNECTION_REFUSED_INTERNAL_SERVER_ERROR.getCode()));
   }
 
 }
