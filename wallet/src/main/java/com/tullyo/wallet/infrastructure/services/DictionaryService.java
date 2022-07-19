@@ -28,4 +28,16 @@ public class DictionaryService {
     }
   }
 
+  public ErrorResponse getMessageWithFieldAndDescription(@NotNull String key, @NotNull String field, String description) {
+    try {
+      return ErrorResponse.builder()
+          .code(key)
+          .field(field)
+          .description(description)
+          .build();
+    } catch (Exception e) {
+      return getMessage(HttpMessageCode.GENERIC_INTERNAL_SERVER_ERROR.getCode());
+    }
+  }
+
 }

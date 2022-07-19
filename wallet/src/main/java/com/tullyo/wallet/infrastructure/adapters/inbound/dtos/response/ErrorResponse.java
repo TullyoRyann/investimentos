@@ -10,6 +10,7 @@ import lombok.Setter;
 public class ErrorResponse {
 
   private String code;
+  private String field;
   private String description;
 
 }

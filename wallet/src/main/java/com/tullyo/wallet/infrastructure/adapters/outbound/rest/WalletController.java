@@ -1,19 +1,23 @@
 package com.tullyo.wallet.infrastructure.adapters.outbound.rest;
 
-import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.request.WalletRequest;
-import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.response.WalletResponse;
 import com.tullyo.wallet.domain.model.Wallet;
 import com.tullyo.wallet.domain.ports.in.services.WalletServicePort;
-import java.net.URI;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.request.WalletRequest;
+import com.tullyo.wallet.infrastructure.adapters.inbound.dtos.response.WalletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -25,7 +29,7 @@ public class WalletController extends BasicController {
   private final ModelMapper modelMapper;
 
   @PostMapping
-  public ResponseEntity<WalletResponse> save(@RequestBody WalletRequest walletRequest, UriComponentsBuilder componentsBuilder) {
+  public ResponseEntity<WalletResponse> save(@RequestBody @Valid WalletRequest walletRequest, UriComponentsBuilder componentsBuilder) {
     Wallet wallet = modelMapper.map(walletRequest, Wallet.class);
     Wallet walletSaved = walletServicePort.save(wallet);
     WalletResponse walletResponse = modelMapper.map(walletSaved, WalletResponse.class);

@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum HttpMessageCode {
 
+  REQUIRED_FIELD_VALIDATION("412.000"),
   GENERIC_INTERNAL_SERVER_ERROR("500.000");
 
   private String code;
